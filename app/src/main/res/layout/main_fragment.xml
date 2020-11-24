@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.main.MainFragment">
+
+    <TextView
+        android:id="@+id/name_tv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/quiz"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="89dp"
+        android:src="@drawable/ic_quiz" />
+
+    <TextView
+        android:layout_width="117dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="203dp"
+        android:layout_marginStart="67dp"
+        android:text="Question amount:"
+        android:textSize="12sp"
+        android:textColor="@color/grey"/>
+
+    <TextView
+        android:layout_width="20dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="203dp"
+        android:layout_marginStart="165dp"
+        android:text="10"
+        android:textSize="12sp"
+        android:textColor="@color/black"
+        />
+
+    <SeekBar
+        android:layout_width="240dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="212dp"
+        android:max="20"
+        android:progress="10"
+        android:progressTint="@color/violet"
+        android:progressBackgroundTint="@color/grey"
+        android:thumbTint="@color/violet"
+        />
+
+    <TextView
+        android:layout_marginStart="67dp"
+        android:layout_marginTop="263dp"
+        android:text="Category"
+        android:layout_width="81dp"
+        android:layout_height="16dp"
+        android:textColor="@color/grey"
+        android:textSize="12sp"/>
+
+    <Spinner
+        android:layout_marginStart="67dp"
+        android:layout_marginTop="284dp"
+        android:layout_width="240dp"
+        android:layout_height="48dp"
+        />
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="16dp"
+        android:layout_marginTop="341dp"
+        android:layout_marginStart="67dp"
+        android:text="Difficulty"
+        android:textSize="12sp"
+        android:textColor="@color/grey"/>
+
+    <Spinner
+        android:layout_marginStart="67dp"
+        android:layout_marginTop="362dp"
+        android:layout_width="240dp"
+        android:layout_height="48dp"
+       />
+
+    <TextView
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="425dp"
+        android:text="-"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:layout_marginStart="72dp"
+        android:layout_gravity="start"/>
+
+    <TextView
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="425dp"
+        android:text="0"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="425dp"
+        android:text="+"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:layout_gravity="end"
+        android:layout_marginEnd="67dp"/>
+
+
+
+    <Button
+        android:layout_marginTop="474dp"
+        android:layout_gravity="center_horizontal"
+        android:text="start"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:background="@drawable/button_bg"
+        />
+
+</FrameLayout>
