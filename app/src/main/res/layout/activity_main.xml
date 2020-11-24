@@ -7,7 +7,15 @@
     tools:context=".ui.activities.MainActivity"
     android:background="@color/background">
 
-    <androidx.viewpager.widget.ViewPager
+<!--    <androidx.viewpager.widget.ViewPager-->
+<!--        android:id="@+id/main_view_pager"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/main_bottom_nav"-->
+<!--        />-->
+
+    <com.natlusrun.quizapp.ui.adapters.NonSwipeViewPager
         android:id="@+id/main_view_pager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
