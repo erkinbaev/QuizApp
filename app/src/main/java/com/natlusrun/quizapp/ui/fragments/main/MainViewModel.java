@@ -7,12 +7,22 @@ import androidx.lifecycle.ViewModel;
 
 public class MainViewModel extends ViewModel {
 
-   public MutableLiveData<String> nameData = new MutableLiveData<>();
 
+    public MutableLiveData<String> numberData = new MutableLiveData<>();
+    Integer num = 0;
 
-    void getName(String name){
-        nameData.setValue(name);
+    void increaseNum() {
+       num++;
+       setNumber();
+    }
 
+    void decreaseNum(){
+        num--;
+        setNumber();
+    }
+
+    void setNumber() {
+        numberData.setValue(String.valueOf(num));
     }
 
 }

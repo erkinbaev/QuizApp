@@ -88,6 +88,7 @@
        />
 
     <TextView
+        android:id="@+id/decrease_tv"
         android:layout_width="20dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="425dp"
@@ -98,6 +99,7 @@
         android:layout_gravity="start"/>
 
     <TextView
+        android:id="@+id/counter_number_tv"
         android:layout_width="20dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="425dp"
@@ -107,6 +109,7 @@
         android:layout_gravity="center_horizontal"/>
 
     <TextView
+        android:id="@+id/increase_tv"
         android:layout_width="20dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="425dp"

@@ -24,7 +24,7 @@ import static android.content.ContentValues.TAG;
 public class MainFragment extends Fragment {
 
     private MainViewModel mViewModel;
-    private TextView nameTv;
+    private TextView nameTv, increaseTv, decreaseTv, counterNumberTv;
     int position = 0;
 
     public static MainFragment newInstance() {
@@ -41,6 +41,11 @@ public class MainFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         nameTv = view.findViewById(R.id.name_tv);
+        increaseTv = view.findViewById(R.id.increase_tv);
+        decreaseTv = view.findViewById(R.id.decrease_tv);
+        counterNumberTv = view.findViewById(R.id.counter_number_tv);
+
+        onCounterClick();
     }
 
     @Override
@@ -49,23 +54,21 @@ public class MainFragment extends Fragment {
         mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         // TODO: Use the ViewModel
 
-        mViewModel.nameData.observe(getActivity(), new Observer<String>() {
+        mViewModel.numberData.observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                //nameTv.setText(s);
-                Log.d(TAG, "onChanged: " + s);
+                counterNumberTv.setText(s);
             }
         });
-
-        ArrayList<String> names = new ArrayList<>();
-        names.add("Аъзамжон");
-        names.add("Азиз");
-        names.add("Орозбек");
-        names.add("Талгар");
-        names.add("Тилек");
-        names.add("Миранда");
-        names.add("Курманжан");
-        names.add("Нурсултан");
+//        ArrayList<String> names = new ArrayList<>();
+//        names.add("Аъзамжон");
+//        names.add("Азиз");
+//        names.add("Орозбек");
+//        names.add("Талгар");
+//        names.add("Тилек");
+//        names.add("Миранда");
+//        names.add("Курманжан");
+//        names.add("Нурсултан");
 
 
 //        for (int i = 0; i < names.size(); i++) {
@@ -78,7 +81,7 @@ public class MainFragment extends Fragment {
 //
 //        }
 
-//        new Handler().postDelayed(new Runnable() {
+//        new Handler().postDelayed(new Runeable() {
 //            @Override
 //            public void run() {
 //                if (position <= names.size() - 1) {
@@ -88,6 +91,22 @@ public class MainFragment extends Fragment {
 //
 //            }
 //        }, 2000);
+    }
+
+    private void onCounterClick() {
+        increaseTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewModel.increaseNum();
+            }
+        });
+
+        decreaseTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewModel.decreaseNum();
+            }
+        });
     }
 
 }
