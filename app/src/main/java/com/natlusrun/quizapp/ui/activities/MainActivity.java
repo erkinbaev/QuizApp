@@ -8,6 +8,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.natlusrun.quizapp.R;
@@ -36,14 +37,49 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        fragmentList = new ArrayList<>();
         fillFragments();
+        initViews();
+        setViewPager();
+        setBottomNavigationView();
 
-        //viewPager = findViewById(R.id.main_view_pager);
+//        mainFragment = new MainFragment();
+//        getSupportFragmentManager()
+//                .beginTransaction()
+//                .add(R.id.main_container, mainFragment)
+//                .commit();
+    }
+
+    private void fillFragments() {
+        fragmentList = new ArrayList<>();
+        fragmentList.add(new MainFragment());
+        fragmentList.add(new HistoryFragment());
+        fragmentList.add(new SettingsFragment());
+
+    }
+
+    private void initViews() {
         nonSwipeViewPager = findViewById(R.id.main_view_pager);
         bottomNavigationView = findViewById(R.id.main_bottom_nav);
-        bottomNavigationView.setItemIconTintList(null);
+    }
 
+    private void setBottomNavigationView() {
+        bottomNavigationView.setItemIconTintList(null);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if (item.getItemId() == R.id.main_nav) {
+                    nonSwipeViewPager.setCurrentItem(0);
+                } else if (item.getItemId() == R.id.history_nav) {
+                    nonSwipeViewPager.setCurrentItem(1);
+                } else if (item.getItemId() == R.id.settings_nav) {
+                    nonSwipeViewPager.setCurrentItem(2);
+                }
+                return true;
+            }
+        });
+    }
+
+    private void setViewPager() {
         nonSwipeViewPager.setAdapter(new ViewPagerAdapter(fragmentList, getSupportFragmentManager()));
         nonSwipeViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
 
@@ -52,32 +88,6 @@ public class MainActivity extends AppCompatActivity {
                 bottomNavigationView.getMenu().getItem(position).setChecked(true);
             }
         });
-
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId() == R.id.main_nav) {
-                    nonSwipeViewPager.setCurrentItem(0);
-                } else if(item.getItemId() == R.id.history_nav){
-                    nonSwipeViewPager.setCurrentItem(1);
-                }else if(item.getItemId() == R.id.settings_nav){
-                    nonSwipeViewPager.setCurrentItem(2);
-                }
-                return true;
-            }
-        });
-
-        mainFragment = new MainFragment();
-//        getSupportFragmentManager()
-//                .beginTransaction()
-//                .add(R.id.main_container, mainFragment)
-//                .commit();
-    }
-
-    private void fillFragments() {
-        fragmentList.add(new MainFragment());
-        fragmentList.add(new HistoryFragment());
-        fragmentList.add(new SettingsFragment());
 
     }
 }

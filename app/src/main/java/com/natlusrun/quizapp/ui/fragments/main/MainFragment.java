@@ -40,11 +40,8 @@ public class MainFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        nameTv = view.findViewById(R.id.name_tv);
-        increaseTv = view.findViewById(R.id.increase_tv);
-        decreaseTv = view.findViewById(R.id.decrease_tv);
-        counterNumberTv = view.findViewById(R.id.counter_number_tv);
 
+        initViews(view);
         onCounterClick();
     }
 
@@ -91,6 +88,13 @@ public class MainFragment extends Fragment {
 //
 //            }
 //        }, 2000);
+    }
+
+    private void initViews(View view) {
+        nameTv = view.findViewById(R.id.name_tv);
+        increaseTv = view.findViewById(R.id.increase_tv);
+        decreaseTv = view.findViewById(R.id.decrease_tv);
+        counterNumberTv = view.findViewById(R.id.counter_number_tv);
     }
 
     private void onCounterClick() {
