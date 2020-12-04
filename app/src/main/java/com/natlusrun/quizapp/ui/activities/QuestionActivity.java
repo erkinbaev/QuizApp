@@ -44,10 +44,6 @@ public class QuestionActivity extends AppCompatActivity {
         list.add(new StaticQuestionModel("айдар байке или нургазы байке?"      , "boolean" ));//2
 
 
-
-
-
-
         questionRecyclerAdapter.setList(list);
 
 
