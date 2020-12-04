@@ -11,4 +11,6 @@
     <color name="violet">#DB5BF5</color>
     <color name="grey">#A9A9A9</color>
     <color name="background">#D2CFCF</color>
+    <color name="skip_bg">#FF6581</color>
+    <color name="answer_btn">#6979F8</color>
 </resources>

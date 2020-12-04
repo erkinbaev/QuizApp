@@ -1,48 +1,52 @@
 package com.natlusrun.quizapp.ui.fragments.main;
 
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.natlusrun.quizapp.R;
-
-import java.util.ArrayList;
-
-import static android.content.ContentValues.TAG;
+import com.natlusrun.quizapp.databinding.MainFragmentBinding;
+import com.natlusrun.quizapp.ui.activities.QuestionActivity;
 
 public class MainFragment extends Fragment {
 
     private MainViewModel mViewModel;
-    private TextView nameTv, increaseTv, decreaseTv, counterNumberTv;
-    int position = 0;
+    protected TextView nameTv, increaseTv, decreaseTv, counterNumberTv;
+    public static final String ID = "id";
+    public static final String CATEGORY = "category";
+    public static final String CATEGORY_STR = "categoryStr";
+    public static final String DIFFICULTY = "difficulty";
+    public MainFragmentBinding binding;
 
-    public static MainFragment newInstance() {
-        return new MainFragment();
-    }
+    private Button startBtn;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.main_fragment, container, false);
+        binding = MainFragmentBinding.inflate(inflater, container, false);
+        binding.getRoot();
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        
         initViews(view);
         onCounterClick();
+        startBtn.setOnClickListener(v -> {
+Intent intent = new Intent(getContext(), QuestionActivity.class);
+startActivity(intent);
+        });
     }
 
     @Override
@@ -51,43 +55,8 @@ public class MainFragment extends Fragment {
         mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         // TODO: Use the ViewModel
 
-        mViewModel.numberData.observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                counterNumberTv.setText(s);
-            }
-        });
-//        ArrayList<String> names = new ArrayList<>();
-//        names.add("Аъзамжон");
-//        names.add("Азиз");
-//        names.add("Орозбек");
-//        names.add("Талгар");
-//        names.add("Тилек");
-//        names.add("Миранда");
-//        names.add("Курманжан");
-//        names.add("Нурсултан");
+        mViewModel.numberData.observe(getViewLifecycleOwner(), s -> counterNumberTv.setText(s));
 
-
-//        for (int i = 0; i < names.size(); i++) {
-//            try {
-//                mViewModel.getName(names.get(i));
-//                Thread.sleep(2000);
-//            }catch (Exception e){
-//                e.printStackTrace();
-//            }
-//
-//        }
-
-//        new Handler().postDelayed(new Runeable() {
-//            @Override
-//            public void run() {
-//                if (position <= names.size() - 1) {
-//
-//                    position++;
-//                }
-//
-//            }
-//        }, 2000);
     }
 
     private void initViews(View view) {
@@ -95,22 +64,13 @@ public class MainFragment extends Fragment {
         increaseTv = view.findViewById(R.id.increase_tv);
         decreaseTv = view.findViewById(R.id.decrease_tv);
         counterNumberTv = view.findViewById(R.id.counter_number_tv);
+        startBtn = view.findViewById(R.id.start_btn);
     }
 
     private void onCounterClick() {
-        increaseTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mViewModel.increaseNum();
-            }
-        });
+        increaseTv.setOnClickListener(v -> mViewModel.increaseNum());
 
-        decreaseTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mViewModel.decreaseNum();
-            }
-        });
+        decreaseTv.setOnClickListener(v -> mViewModel.decreaseNum());
     }
 
 }
