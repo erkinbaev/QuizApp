@@ -78,13 +78,16 @@
 
         </LinearLayout>
 
-        <Button
-            android:layout_width="90dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="100dp"
-            android:background="@drawable/button_skip_bg"
-            android:text="skip" />
+
+            <Button
+                android:id="@+id/btn_skip"
+                android:layout_width="90dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_skip_bg"
+                android:text="skip" />
+
 
     </LinearLayout>
 

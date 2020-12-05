@@ -3,6 +3,7 @@ package com.natlusrun.quizapp.ui.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -16,30 +17,72 @@ import com.natlusrun.quizapp.databinding.AnswersItemBinding;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuestionRecyclerAdapter extends RecyclerView.Adapter<QuestionViewHolder> {
+public class QuestionRecyclerAdapter extends RecyclerView.Adapter<QuestionRecyclerAdapter.ViewHolder> {
 
-    private List<StaticQuestionModel> staticQuestions = new ArrayList<>();
+    private List<QuestionModel> staticQuestions = new ArrayList<>();
     private AnswersItemBinding binding;
+    private AnswerClickListener listener;
+
+    public QuestionRecyclerAdapter(AnswerClickListener listener) {
+        this.listener = listener;
+    }
+
+    public void setList(ArrayList<QuestionModel> list) {
+        staticQuestions = list;
+        notifyDataSetChanged();
+    }
+
 
     @NonNull
     @Override
-    public QuestionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         binding = AnswersItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-        return new QuestionViewHolder(binding);
+        return new ViewHolder(binding.getRoot());
     }
 
     @Override
-    public void onBindViewHolder(@NonNull QuestionViewHolder holder, int position) {
-        holder.onBind(staticQuestions.get(position), binding);
-    }
-
-    public void setList(ArrayList<StaticQuestionModel> list) {
-        staticQuestions = list;
-        notifyDataSetChanged();
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        binding.setViewHolder(holder);
+        binding.setModel(staticQuestions.get(position));
     }
 
     @Override
     public int getItemCount() {
         return staticQuestions.size();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+        }
+
+        public void onBind(QuestionModel model, int positionBtn) {
+            boolean knopka = false;
+
+            if (model.isKnopka()) {
+
+                Button[] massiv = {binding.answerBtn1, binding.answerBtn2, binding.answerBtn3, binding.answerBtn4};
+
+                if (model.getType().equals("multiple")) {
+                    binding.layoutBoolean.setVisibility(View.GONE);
+                    binding.layoutMultiple.setVisibility(View.VISIBLE);
+
+                } else {
+                    binding.layoutMultiple.setVisibility(View.GONE);
+                    binding.layoutBoolean.setVisibility(View.VISIBLE);
+                }
+
+
+                if (massiv[positionBtn].getText().equals(model.getCorrectAnswer()))
+                    knopka = true;
+
+                model.setKnopka(false);
+            }
+
+
+            listener.onAnswerClick(knopka, getAdapterPosition());
+
+        }
     }
 }

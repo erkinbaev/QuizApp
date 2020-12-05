@@ -29,8 +29,9 @@ public class QuizApiClient implements IApiQuizApiClient {
             @Override
             public void onResponse(Call<QuestionResponse> call, Response<QuestionResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    Log.d(TAG, "onResponse: success" + response.body().toString());
+                    Log.d(TAG, "onResponse: success" + response.body().getQuestions().size());
                     callBack.onSuccess(response.body().getQuestions());
+
                 } else {
                     callBack.onFailure(new Exception("Response is Empty" + response.body()));
                     Log.d(TAG, "onResponse: failure" + response.message() + "" + response.code());

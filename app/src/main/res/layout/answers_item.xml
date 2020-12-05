@@ -4,6 +4,17 @@
 
     <data>
 
+        <variable
+            name="model"
+            type="com.natlusrun.quizapp.data.model.QuestionModel" />
+
+        <variable
+            name="viewHolder"
+            type="com.natlusrun.quizapp.ui.adapters.QuestionRecyclerAdapter.ViewHolder" />
+
+        <import
+            alias="v"
+            type="android.view.View" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -16,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Test text"
+            android:text="@{model.question}"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -37,7 +48,8 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/four_answers"
-                android:text="answer 1" />
+                android:onClick="@{(v)->viewHolder.onBind(model,0)}"
+                android:text="@{model.incorrectAnswers.get(0)}" />
 
             <Button
                 android:id="@+id/answer_btn2"
@@ -46,7 +58,8 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/four_answers"
-                android:text="answer 2" />
+                android:onClick="@{(v)->viewHolder.onBind(model,1)}"
+                android:text="@{model.incorrectAnswers.get(1)}" />
 
             <Button
                 android:id="@+id/answer_btn3"
@@ -55,7 +68,8 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/four_answers"
-                android:text="answer 3" />
+                android:onClick="@{(v)->viewHolder.onBind(model,2)}"
+                android:text="@{model.incorrectAnswers.get(2)}" />
 
             <Button
                 android:id="@+id/answer_btn4"
@@ -64,7 +78,8 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/four_answers"
-                android:text="answer 4" />
+                android:onClick="@{(v)->viewHolder.onBind(model,3)}"
+                android:text="@{model.incorrectAnswers.get(3)}" />
 
         </LinearLayout>
 
@@ -82,7 +97,8 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/four_answers"
-                android:text="answer 1" />
+                android:onClick="@{(v)->viewHolder.onBind(model,4)}"
+                android:text="@{model.incorrectAnswers.get(0)}" />
 
             <Button
                 android:id="@+id/answer_btn6"
@@ -91,7 +107,8 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/four_answers"
-                android:text="answer 2" />
+                android:onClick="@{(v)->viewHolder.onBind(model,5)}"
+                android:text="@{model.incorrectAnswers.get(1)}" />
 
         </LinearLayout>
 

@@ -13,15 +13,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.natlusrun.quizapp.R;
-import com.natlusrun.quizapp.data.model.CategoryModel;
 import com.natlusrun.quizapp.databinding.MainFragmentBinding;
 import com.natlusrun.quizapp.ui.activities.QuestionActivity;
-
-import java.util.ArrayList;
 
 public class MainFragment extends Fragment {
 
@@ -32,7 +28,7 @@ public class MainFragment extends Fragment {
     public static final String CATEGORY_STR = "categoryStr";
     public static final String DIFFICULTY = "difficulty";
     public int id, category;
-    public String difficulty;
+    public String strDifficulty;
     public MainFragmentBinding binding;
 
     private Button startBtn;
@@ -54,14 +50,13 @@ public class MainFragment extends Fragment {
         startBtn.setOnClickListener(v -> {
             id = Integer.parseInt(binding.questionAmountTv.getText().toString());
             category = vm.listCategory.getValue().get(binding.categorySp.getSelectedItemPosition()).getId();
-            difficulty = binding.difficultyTv.getSelectedItem().toString().toLowerCase();
+            strDifficulty = binding.difficultyTv.getSelectedItem().toString().toLowerCase();
 
             Intent intent = new Intent(getContext(), QuestionActivity.class);
             intent.putExtra(ID, id);
-            intent.putExtra(ID, category);
-            intent.putExtra(ID, difficulty);
-            Log.d("TAG", "onViewCreated: " + "id" + id + "category" + category + "difficulty" + difficulty);
-            Log.d("TAG", "onViewCreated: " + "size of list" + vm.listCategory.getValue().size());
+            intent.putExtra(CATEGORY, category);
+            intent.putExtra(DIFFICULTY, strDifficulty);
+            Log.d("TAG", "onViewCreated: " + "id" + id + "category" + category + "difficulty" + strDifficulty);
 
             startActivity(intent);
         });
