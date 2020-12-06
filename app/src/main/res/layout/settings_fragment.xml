@@ -6,8 +6,116 @@
     tools:context=".ui.fragments.settings.SettingsFragment">
 
     <TextView
+        android:id="@+id/name_tv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Settings fragment" />
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="32dp"
+        android:text="Settings"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="94dp">
+
+        <TextView
+            android:id="@+id/share_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="32dp"
+            android:text="Share this app"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            />
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="330dp"
+            android:src="@drawable/ic_settings_function"
+            />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="174dp">
+
+        <TextView
+            android:id="@+id/rate_us_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="32dp"
+            android:text="Rate us"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            />
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="330dp"
+            android:src="@drawable/ic_settings_function"
+            />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="254dp">
+
+        <TextView
+            android:id="@+id/feedback_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="32dp"
+            android:text="Leave feedback"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            />
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="330dp"
+            android:src="@drawable/ic_settings_function"
+            />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="334dp">
+
+        <TextView
+            android:id="@+id/clear_history_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="32dp"
+            android:text="Clear history"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            />
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="330dp"
+            android:src="@drawable/ic_settings_function"
+            />
+    </androidx.cardview.widget.CardView>
+
+
 
 </FrameLayout>
