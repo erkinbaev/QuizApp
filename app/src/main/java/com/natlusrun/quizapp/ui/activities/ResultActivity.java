@@ -1,6 +1,8 @@
 package com.natlusrun.quizapp.ui.activities;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,14 +26,17 @@ public class ResultActivity extends AppCompatActivity {
         binding = ActivityResultBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         Gson gson = new Gson();
-
-        Type type = new TypeToken<ArrayList<QuestionModel>>() {
-
+        Type type = new TypeToken<QuizResult>() {
         }.getType();
-        QuizResult qr = gson.fromJson(getIntent().getStringExtra(QuestionActivity.MODEL), type);
+        String model = getIntent().getStringExtra(QuestionActivity.MODEL);
+        QuizResult qr = gson.fromJson(model, type);
+
+        Log.d("TAG", "difficulty: " + qr.getDifficulty());
+        Log.d("TAG", "category: " + qr.getCategory());
+        Log.d("TAG", "correctanswer: " + qr.getCorrectAnswerResult());
 
         binding.difficulty.setText(qr.getDifficulty());
         binding.category.setText(qr.getCategory());
-        binding.correctAnswersTv.setText(qr.getCorrectAnswerResult());
+        binding.correctAnswersTv.setText(String.valueOf(qr.getCorrectAnswerResult()));
     }
 }

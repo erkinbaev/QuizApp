@@ -54,7 +54,10 @@
             android:layout_marginTop="29dp"
             android:max="10"
             android:progress="5"
-            android:progressDrawable="@drawable/progress_bg" />
+            android:progressTint="@color/violet"
+            android:thumbTint="@android:color/transparent"
+
+            />
 
         <TextView
             android:layout_width="22dp"

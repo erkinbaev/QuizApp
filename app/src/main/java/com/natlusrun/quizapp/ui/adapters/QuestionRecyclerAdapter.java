@@ -88,14 +88,14 @@ public class QuestionRecyclerAdapter extends RecyclerView.Adapter<QuestionRecycl
                 model.setKnopka(false);
             }
 
-            if (getAdapterPosition()==staticQuestions.size()-1)
+            if (getAdapterPosition() == staticQuestions.size() - 1)
                 listener.openActivity();
-            listener.onAnswerClick(knopka, getAdapterPosition());
+            else
+                listener.onAnswerClick(knopka, getAdapterPosition());
         }
 
         public void setText(QuestionModel model) {
             binding.questionTv.setText(model.getQuestion());
-            Log.d("TAG", "setText: " + model.getQuestion());
             if (model.getType().equals("multiple")) {
                 for (int i = 0; i < massiv.length; i++) {
                     massiv[i].setText(model.getIncorrectAnswers().get(i));

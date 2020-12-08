@@ -1,5 +1,6 @@
 package com.natlusrun.quizapp.ui.fragments.main;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,7 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,7 +25,8 @@ import com.natlusrun.quizapp.ui.activities.QuestionActivity;
 public class MainFragment extends Fragment {
 
     private MainViewModel vm;
-    protected TextView nameTv, increaseTv, decreaseTv, counterNumberTv;
+    protected TextView nameTv, increaseTv, decreaseTv, counterNumberTv, questionAmount;
+    private SeekBar seekBar;
     public static final String ID = "id";
     public static final String CATEGORY = "category";
     public static final String CATEGORY_STR = "categoryStr";
@@ -47,10 +51,12 @@ public class MainFragment extends Fragment {
 
         initViews(view);
         onCounterClick();
+        setSeekBar();
         startBtn.setOnClickListener(v -> {
             id = Integer.parseInt(binding.questionAmountTv.getText().toString());
             category = vm.listCategory.getValue().get(binding.categorySp.getSelectedItemPosition()).getId();
             strDifficulty = binding.difficultyTv.getSelectedItem().toString().toLowerCase();
+            categoryStr = vm.listCategory.getValue().get(binding.categorySp.getSelectedItemPosition()).getName();
 
             Intent intent = new Intent(getContext(), QuestionActivity.class);
             intent.putExtra(ID, id);
@@ -78,6 +84,32 @@ public class MainFragment extends Fragment {
         decreaseTv = view.findViewById(R.id.decrease_tv);
         counterNumberTv = view.findViewById(R.id.counter_number_tv);
         startBtn = view.findViewById(R.id.start_btn);
+        seekBar = view.findViewById(R.id.amount_sb);
+        questionAmount = view.findViewById(R.id.question_amount_tv);
+    }
+
+    private void setSeekBar() {
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            int progressValue = 0;
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                progressValue = progress;
+                questionAmount.setText("" + progressValue);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                questionAmount.setText("" + progressValue);
+            }
+
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                questionAmount.setText("" + progressValue);
+
+            }
+        });
     }
 
     private void setSpinner() {
