@@ -1,116 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-<layout>
+    <TextView
+        android:id="@+id/question_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
-    <data>
-
-        <variable
-            name="model"
-            type="com.natlusrun.quizapp.data.model.QuestionModel" />
-
-        <variable
-            name="viewHolder"
-            type="com.natlusrun.quizapp.ui.adapters.QuestionRecyclerAdapter.ViewHolder" />
-
-        <import
-            alias="v"
-            type="android.view.View" />
-    </data>
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
+        android:id="@+id/layout_multiple"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="43dp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/question_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+
+        <Button
+            android:id="@+id/answer_btn1"
+            style="@style/AnswerButtonStyle"
+            android:layout_width="280dp"
+            android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
-            android:text="@{model.question}"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:background="@drawable/four_answers" />
 
-        <LinearLayout
-            android:id="@+id/layout_multiple"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="43dp"
-            android:orientation="vertical">
+        <Button
+            android:id="@+id/answer_btn2"
+            style="@style/AnswerButtonStyle"
+            android:layout_width="280dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/four_answers" />
 
+        <Button
+            android:id="@+id/answer_btn3"
+            style="@style/AnswerButtonStyle"
+            android:layout_width="280dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/four_answers" />
 
-            <Button
-                android:id="@+id/answer_btn1"
-                style="@style/AnswerButtonStyle"
-                android:layout_width="280dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/four_answers"
-                android:onClick="@{(v)->viewHolder.onBind(model,0)}"
-                android:text="@{model.incorrectAnswers.get(0)}" />
-
-            <Button
-                android:id="@+id/answer_btn2"
-                style="@style/AnswerButtonStyle"
-                android:layout_width="280dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/four_answers"
-                android:onClick="@{(v)->viewHolder.onBind(model,1)}"
-                android:text="@{model.incorrectAnswers.get(1)}" />
-
-            <Button
-                android:id="@+id/answer_btn3"
-                style="@style/AnswerButtonStyle"
-                android:layout_width="280dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/four_answers"
-                android:onClick="@{(v)->viewHolder.onBind(model,2)}"
-                android:text="@{model.incorrectAnswers.get(2)}" />
-
-            <Button
-                android:id="@+id/answer_btn4"
-                style="@style/AnswerButtonStyle"
-                android:layout_width="280dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/four_answers"
-                android:onClick="@{(v)->viewHolder.onBind(model,3)}"
-                android:text="@{model.incorrectAnswers.get(3)}" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layout_boolean"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <Button
-                android:id="@+id/answer_btn5"
-                style="@style/AnswerButtonStyle"
-                android:layout_width="280dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/four_answers"
-                android:onClick="@{(v)->viewHolder.onBind(model,4)}"
-                android:text="@{model.incorrectAnswers.get(0)}" />
-
-            <Button
-                android:id="@+id/answer_btn6"
-                style="@style/AnswerButtonStyle"
-                android:layout_width="280dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/four_answers"
-                android:onClick="@{(v)->viewHolder.onBind(model,5)}"
-                android:text="@{model.incorrectAnswers.get(1)}" />
-
-        </LinearLayout>
+        <Button
+            android:id="@+id/answer_btn4"
+            style="@style/AnswerButtonStyle"
+            android:layout_width="280dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/four_answers" />
 
     </LinearLayout>
-</layout>
+
+    <LinearLayout
+        android:id="@+id/layout_boolean"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/answer_btn5"
+            style="@style/AnswerButtonStyle"
+            android:layout_width="280dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/four_answers" />
+
+        <Button
+            android:id="@+id/answer_btn6"
+            style="@style/AnswerButtonStyle"
+            android:layout_width="280dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/four_answers" />
+
+    </LinearLayout>
+
+</LinearLayout>

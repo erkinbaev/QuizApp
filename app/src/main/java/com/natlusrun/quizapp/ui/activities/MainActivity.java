@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -63,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setBottomNavigationView() {
+        getWindow().setNavigationBarColor(Color.WHITE);
         bottomNavigationView.setItemIconTintList(null);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -81,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setViewPager() {
         nonSwipeViewPager.setAdapter(new ViewPagerAdapter(fragmentList, getSupportFragmentManager()));
+        //nonSwipeViewPager.setOffscreenPageLimit(3);
         nonSwipeViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
 
             @Override
@@ -88,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 bottomNavigationView.getMenu().getItem(position).setChecked(true);
             }
         });
+
 
     }
 }

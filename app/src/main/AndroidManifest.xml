@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:name=".App"
         android:theme="@style/Theme.QuizApp">
-        <activity android:name=".ui.activities.MainActivity">
+        <activity android:name=".ui.activities.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activities.QuestionActivity"/>
+        <activity android:name=".ui.activities.MainActivity"/>
     </application>
 
 </manifest>

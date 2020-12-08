@@ -2,6 +2,7 @@ package com.natlusrun.quizapp.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -12,9 +13,11 @@ import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
+import com.google.gson.Gson;
 import com.natlusrun.quizapp.App;
 import com.natlusrun.quizapp.R;
 import com.natlusrun.quizapp.data.model.QuestionModel;
+import com.natlusrun.quizapp.data.model.QuizResult;
 import com.natlusrun.quizapp.data.model.StaticQuestionModel;
 import com.natlusrun.quizapp.data.network.IApiQuizApiClient;
 import com.natlusrun.quizapp.ui.adapters.AnswerClickListener;
@@ -22,13 +25,16 @@ import com.natlusrun.quizapp.ui.adapters.QuestionRecyclerAdapter;
 import com.natlusrun.quizapp.ui.fragments.main.MainFragment;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class QuestionActivity extends AppCompatActivity implements AnswerClickListener {
 
     private RecyclerView qRecyclerView;
     private QuestionRecyclerAdapter questionRecyclerAdapter;
-    private static ArrayList<StaticQuestionModel> list;
+    private static ArrayList<QuestionModel> list;
     private int forAnswer = 0;
+    public static String MODEL = "model";
+    private int position;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,8 +48,9 @@ public class QuestionActivity extends AppCompatActivity implements AnswerClickLi
                                         @Override
                                         public void onSuccess(ArrayList<QuestionModel> result) {
                                             questionRecyclerAdapter.setList(result);
-                                            Log.d("TAG", "onSuccess: " + result.size());
-                                            Log.d("TAG", "onSuccess: " + result.get(0).getType());
+                                            list.addAll(result);
+                                            Log.d("TAG", "onSuccess1: " + result.size());
+                                            Log.d("TAG", "onSuccess2: " + result.get(0).getType());
                                         }
 
                                         @Override
@@ -71,12 +78,48 @@ public class QuestionActivity extends AppCompatActivity implements AnswerClickLi
 
     @Override
     public void onAnswerClick(boolean b, int adapterPosition) {
-        Toast.makeText(this, "success", Toast.LENGTH_SHORT).show();
+
 
         if (b)
             forAnswer++; //передать в резалт актвити
 
-        int position = adapterPosition + 1;
-        qRecyclerView.scrollToPosition(position);
+        new CountDownTimer(1000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+            }
+
+            @Override
+            public void onFinish() {
+                position = adapterPosition + 1;
+                qRecyclerView.scrollToPosition(position);
+            }
+        }.start();
+
+    }
+
+    @Override
+    public void openActivity() {
+
+        Gson gson = new Gson();
+        Intent intent = new Intent(this, ResultActivity.class);
+        QuizResult qr = new QuizResult(getIntent().getStringExtra(MainFragment.CATEGORY_STR),
+                getIntent().getStringExtra(MainFragment.DIFFICULTY),
+                forAnswer,
+                new Date(System.currentTimeMillis()),
+                list,
+                getIntent().getIntExtra(MainFragment.ID, 44)
+        );
+        intent.putExtra(MODEL, gson.toJson(qr));
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (position > 0)
+            qRecyclerView.scrollToPosition(position--);
+        else
+            super.onBackPressed();
+
     }
 }

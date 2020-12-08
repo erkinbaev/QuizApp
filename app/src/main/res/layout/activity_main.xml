@@ -29,7 +29,9 @@
         android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/main_nav_menu"
+        android:background="@color/white"
         app:itemIconTint="@null"
+
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -47,4 +47,9 @@ public class QuestionViewHolder extends RecyclerView.ViewHolder implements Answe
     public void onAnswerClick(boolean b, int adapterPosition) {
 
     }
+
+    @Override
+    public void openActivity() {
+
+    }
 }

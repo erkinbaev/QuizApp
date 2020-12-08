@@ -28,7 +28,7 @@ public class MainFragment extends Fragment {
     public static final String CATEGORY_STR = "categoryStr";
     public static final String DIFFICULTY = "difficulty";
     public int id, category;
-    public String strDifficulty;
+    public String strDifficulty, categoryStr;
     public MainFragmentBinding binding;
 
     private Button startBtn;
@@ -56,6 +56,7 @@ public class MainFragment extends Fragment {
             intent.putExtra(ID, id);
             intent.putExtra(CATEGORY, category);
             intent.putExtra(DIFFICULTY, strDifficulty);
+            intent.putExtra(CATEGORY_STR, categoryStr);
             Log.d("TAG", "onViewCreated: " + "id" + id + "category" + category + "difficulty" + strDifficulty);
 
             startActivity(intent);
