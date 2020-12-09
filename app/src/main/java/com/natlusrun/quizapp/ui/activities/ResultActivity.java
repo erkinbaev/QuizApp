@@ -2,6 +2,7 @@ package com.natlusrun.quizapp.ui.activities;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.natlusrun.quizapp.App;
 import com.natlusrun.quizapp.R;
 import com.natlusrun.quizapp.data.model.QuestionModel;
 import com.natlusrun.quizapp.data.model.QuizResult;
@@ -38,5 +40,11 @@ public class ResultActivity extends AppCompatActivity {
         binding.difficulty.setText(qr.getDifficulty());
         binding.category.setText(qr.getCategory());
         binding.correctAnswersTv.setText(String.valueOf(qr.getCorrectAnswerResult()));
+
+
+        binding.finish.setOnClickListener(v -> {
+            App.quizDataBase.quizDao().insert(qr);
+            finish();
+        });
     }
 }

@@ -1,6 +1,5 @@
 package com.natlusrun.quizapp.data.db;
 
-import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -21,8 +20,8 @@ public interface QuizDao {
     @Query("SELECT * FROM quizresult")
     List<QuizResult> getAll();
 
-    @Delete
-    void delete(QuizResult quizResult);
+    @Query("DELETE FROM quizresult")
+    void deleteAll();
 
     @Query("DELETE FROM quizresult WHERE id = :id")
     void deleteById(int id);

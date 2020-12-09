@@ -9,6 +9,5 @@ public class ResultViewModel extends ViewModel {
 
     public void saveResultToDb(QuizResult quizResult){
           App.quizDataBase.quizDao().insert(quizResult);
-
     }
 }

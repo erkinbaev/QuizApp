@@ -12,27 +12,47 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.natlusrun.quizapp.App;
 import com.natlusrun.quizapp.R;
+import com.natlusrun.quizapp.data.model.QuizResult;
+import com.natlusrun.quizapp.databinding.HistoryFragmentBinding;
+import com.natlusrun.quizapp.databinding.HistoryItemBinding;
+import com.natlusrun.quizapp.ui.adapters.HistoryAdapter;
+
+import java.util.ArrayList;
 
 public class HistoryFragment extends Fragment {
 
     private HistoryViewModel mViewModel;
+    HistoryFragmentBinding binding;
 
-    public static HistoryFragment newInstance() {
-        return new HistoryFragment();
-    }
+    HistoryAdapter adapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.history_fragment, container, false);
+        binding = HistoryFragmentBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(HistoryViewModel.class);
-        // TODO: Use the ViewModel
+
+        init();
+
     }
 
+    private void init() {
+        adapter = new HistoryAdapter();
+        binding.historyRv.setAdapter(adapter);
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        adapter.add((ArrayList<QuizResult>) App.quizDataBase.quizDao().getAll());
+    }
 }

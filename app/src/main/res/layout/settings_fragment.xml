@@ -19,7 +19,8 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginTop="94dp">
+        android:layout_marginTop="94dp"
+        >
 
         <TextView
             android:id="@+id/share_tv"
@@ -44,7 +45,8 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginTop="174dp">
+        android:layout_marginTop="175dp"
+        >
 
         <TextView
             android:id="@+id/rate_us_tv"
@@ -69,7 +71,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginTop="254dp">
+        android:layout_marginTop="256dp">
 
         <TextView
             android:id="@+id/feedback_tv"
@@ -94,7 +96,8 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginTop="334dp">
+        android:layout_marginTop="337dp"
+        android:id="@+id/clear_history_listener">
 
         <TextView
             android:id="@+id/clear_history_tv"
