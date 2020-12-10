@@ -12,6 +12,7 @@ import com.natlusrun.quizapp.R;
 public class SplashScreenActivity extends Activity {
 
     private Handler mHandler = new Handler();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

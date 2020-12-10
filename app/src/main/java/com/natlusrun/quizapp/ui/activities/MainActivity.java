@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.natlusrun.quizapp.App;
 import com.natlusrun.quizapp.R;
 import com.natlusrun.quizapp.ui.adapters.NonSwipeViewPager;
 import com.natlusrun.quizapp.ui.adapters.ViewPagerAdapter;
@@ -39,17 +41,31 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SharedPreferences sp = App.sp;
+
+        switch (sp.getInt(SettingsFragment.THEME, 22)) {
+            case 0:
+                setTheme(R.style.Light);
+                break;
+            case 1:
+                setTheme(R.style.Dark);
+                break;
+            case 2:
+                setTheme(R.style.Silver);
+                break;
+            case 3:
+                setTheme(R.style.Gold);
+                break;
+            case 4:
+                setTheme(R.style.Android);
+                break;
+        }
 
         fillFragments();
         initViews();
         setViewPager();
         setBottomNavigationView();
 
-//        mainFragment = new MainFragment();
-//        getSupportFragmentManager()
-//                .beginTransaction()
-//                .add(R.id.main_container, mainFragment)
-//                .commit();
     }
 
     private void fillFragments() {

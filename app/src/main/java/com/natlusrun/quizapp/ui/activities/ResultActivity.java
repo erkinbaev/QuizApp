@@ -1,5 +1,6 @@
 package com.natlusrun.quizapp.ui.activities;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.natlusrun.quizapp.R;
 import com.natlusrun.quizapp.data.model.QuestionModel;
 import com.natlusrun.quizapp.data.model.QuizResult;
 import com.natlusrun.quizapp.databinding.ActivityResultBinding;
+import com.natlusrun.quizapp.ui.fragments.settings.SettingsFragment;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -25,8 +27,32 @@ public class ResultActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences sp = App.sp;
+
+        switch (sp.getInt(SettingsFragment.THEME, 22)) {
+            case 0:
+                setTheme(R.style.Light);
+                break;
+            case 1:
+                setTheme(R.style.Dark);
+                break;
+            case 2:
+                setTheme(R.style.Silver);
+                break;
+            case 3:
+                setTheme(R.style.Gold);
+                break;
+            case 4:
+                setTheme(R.style.Android);
+                break;
+        }
+
         binding = ActivityResultBinding.inflate(getLayoutInflater());
+
         setContentView(binding.getRoot());
+
+
         Gson gson = new Gson();
         Type type = new TypeToken<QuizResult>() {
         }.getType();

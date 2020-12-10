@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="?attr/backgroundColor">
 
 
     <LinearLayout
@@ -53,13 +54,14 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="29dp"
             android:max="10"
-            android:progress="5"
+            android:progress="0"
             android:progressTint="@color/violet"
             android:thumbTint="@android:color/transparent"
 
             />
 
         <TextView
+            android:id="@+id/question_qamount_tv"
             android:layout_width="22dp"
             android:layout_height="14dp"
             android:layout_gravity="center_horizontal"

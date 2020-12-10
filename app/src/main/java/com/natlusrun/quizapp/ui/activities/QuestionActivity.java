@@ -2,10 +2,12 @@ package com.natlusrun.quizapp.ui.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -25,6 +27,7 @@ import com.natlusrun.quizapp.data.network.IApiQuizApiClient;
 import com.natlusrun.quizapp.ui.adapters.AnswerClickListener;
 import com.natlusrun.quizapp.ui.adapters.QuestionRecyclerAdapter;
 import com.natlusrun.quizapp.ui.fragments.main.MainFragment;
+import com.natlusrun.quizapp.ui.fragments.settings.SettingsFragment;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,6 +35,7 @@ import java.util.Date;
 public class QuestionActivity extends AppCompatActivity implements AnswerClickListener {
 
     private SeekBar seekBar;
+    private TextView questionAmount;
     private RecyclerView qRecyclerView;
     private QuestionRecyclerAdapter questionRecyclerAdapter;
     private static ArrayList<QuestionModel> list;
@@ -40,9 +44,29 @@ public class QuestionActivity extends AppCompatActivity implements AnswerClickLi
     public static String MODEL = "model";
     private int position, amount;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences sp = App.sp;
+
+        switch (sp.getInt(SettingsFragment.THEME, 22)) {
+            case 0:
+                setTheme(R.style.Light);
+                break;
+            case 1:
+                setTheme(R.style.Dark);
+                break;
+            case 2:
+                setTheme(R.style.Silver);
+                break;
+            case 3:
+                setTheme(R.style.Gold);
+                break;
+            case 4:
+                setTheme(R.style.Android);
+                break;
+        }
         setContentView(R.layout.activity_question);
         init();
 
@@ -73,6 +97,7 @@ public class QuestionActivity extends AppCompatActivity implements AnswerClickLi
     private void init() {
         seekBar = findViewById(R.id.question_progress_bar);
         qRecyclerView = findViewById(R.id.questions_rv);
+        questionAmount = findViewById(R.id.question_qamount_tv);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
         qRecyclerView.setLayoutManager(linearLayoutManager);
 
@@ -83,29 +108,7 @@ public class QuestionActivity extends AppCompatActivity implements AnswerClickLi
         qRecyclerView.setAdapter(questionRecyclerAdapter);
     }
 
-//   // private void setSeekBar() {
-//        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-//            int progressValue = 0;
-//
-//            @Override
-//            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-//                progressValue = progress;
-//                questionAmount.setText("" +progressValue);
-//            }
-//
-//            @Override
-//            public void onStartTrackingTouch(SeekBar seekBar) {
-//                questionAmount.setText("" +progressValue);
-//            }
-//
-//            @SuppressLint("SetTextI18n")
-//            @Override
-//            public void onStopTrackingTouch(SeekBar seekBar) {
-//                questionAmount.setText("" +progressValue);
-//
-//            }
-//        });
-//    }
+
 
     @Override
     public void onAnswerClick(boolean b, int adapterPosition) {
